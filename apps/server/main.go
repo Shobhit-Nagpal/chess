@@ -17,7 +17,7 @@ func main() {
 	go func() {
 		for engine.IsRunning() {
 			response := engine.ReadResponse()
-			handleResponse(response)
+			uci.ParseUciCommand(response)
 		}
 	}()
 
@@ -26,8 +26,4 @@ func main() {
 
 	for {
 	}
-}
-
-func handleResponse(response string) {
-	uci.ParseUciCommand(response)
 }
