@@ -4,9 +4,9 @@ import (
 	"log"
 	"os"
 	"path"
-)
 
-var binaryPath = []string{"personal", "oss", "Stockfish", "src", "stockfish"}
+	"github.com/Shobhit-Nagpal/chess/apps/server/internal/config"
+)
 
 func GetStockfishPath() string {
 	homeDir, err := os.UserHomeDir()
@@ -14,6 +14,8 @@ func GetStockfishPath() string {
 		log.Println("[error]: could not get home dir")
 		return ""
 	}
+
+	var binaryPath = config.GetConfig().GetEnv().BinaryPath()
 
 	fullPath := append([]string{homeDir}, binaryPath...)
 

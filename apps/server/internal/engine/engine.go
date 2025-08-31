@@ -31,14 +31,12 @@ func (e *Engine) Spawn() error {
 
 	stdin, err := cmd.StdinPipe()
 	if err != nil {
-		log.Println(err)
 		return err
 	}
 	e.stdin = stdin
 
 	stdout, err := cmd.StdoutPipe()
 	if err != nil {
-		log.Println(err)
 		return err
 	}
 	e.stdout = stdout
@@ -48,7 +46,6 @@ func (e *Engine) Spawn() error {
 	err = cmd.Start()
 
 	if err != nil {
-		log.Println(err)
 		return err
 	}
 
