@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/Shobhit-Nagpal/chess/apps/server/internal/server/handler"
+	"github.com/Shobhit-Nagpal/chess/apps/server/internal/server/middleware"
 )
 
 func RegisterHandler() http.Handler {
@@ -14,5 +15,7 @@ func RegisterHandler() http.Handler {
 
 	mux.HandleFunc("POST /analyze", handler.Analyze)
 
-	return mux
+	handler := middleware.Logger(mux)
+
+	return handler
 }
