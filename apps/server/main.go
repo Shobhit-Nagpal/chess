@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"github.com/Shobhit-Nagpal/chess/apps/server/internal/engine"
+	"github.com/Shobhit-Nagpal/chess/apps/server/internal/server"
 	"github.com/Shobhit-Nagpal/chess/apps/server/internal/uci"
 )
 
@@ -24,6 +25,5 @@ func main() {
 	engine.SendCommand(uci.IsReady)
 	engine.SendCommand(uci.Uci)
 
-	for {
-	}
+	server.ListenAndServe()
 }

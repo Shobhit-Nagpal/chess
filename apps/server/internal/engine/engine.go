@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"log/slog"
 	"os/exec"
 
 	"github.com/Shobhit-Nagpal/chess/apps/server/internal/utils"
@@ -20,6 +21,8 @@ type Engine struct {
 }
 
 func New() *Engine {
+	slog.Info("Creating new engine...")
+
 	return &Engine{
 		name: "stockfish",
 		path: utils.GetStockfishPath(),
@@ -27,6 +30,8 @@ func New() *Engine {
 }
 
 func (e *Engine) Spawn() error {
+	slog.Info("Spawning process for engine...")
+
 	cmd := exec.Command(e.path)
 
 	stdin, err := cmd.StdinPipe()
@@ -55,6 +60,7 @@ func (e *Engine) Spawn() error {
 }
 
 func (e *Engine) SendCommand(command string) error {
+	slog.Info("Sending command to engine...")
 	_, err := fmt.Fprint(e.stdin, command)
 	return err
 }
